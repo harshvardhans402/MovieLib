@@ -1,0 +1,23 @@
+{
+  "name": "klenty-dev-forum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd frontend && npm install --dev && cd ../backend && npm install --dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santhosh136/discussion-forum-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Santhosh136/discussion-forum-app/issues"
+  },
+  "homepage": "https://github.com/Santhosh136/discussion-forum-app#readme"
+}
