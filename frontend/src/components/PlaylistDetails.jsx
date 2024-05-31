@@ -18,7 +18,7 @@ const PlaylistDetails = () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`/api/playlists/${playlistId}`, {
+            const response = await axios.get(`https://movielib-4ebh.onrender.com/api/playlists/${playlistId}`, {
                 headers: {
                     Authorization: `${user.userId.token}`,
                 },
