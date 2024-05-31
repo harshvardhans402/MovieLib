@@ -20,7 +20,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 app.use(express.json({ extended: false }));
 app.use(cors({
-    origin:[" https://movie-lib-sigma.vercel.app/"],
+    origin: [" https://movie-lib-sigma.vercel.app/"],
     methods: ['POST', 'GET'], credentials: true
 }));
 
@@ -199,3 +199,4 @@ app.use("/api/auth", authRoutes);
 
 // start and listen express web server
 app.listen(PORT, () => console.log(`Server is listening on PORT ${PORT}`));
+module.exports = app;
