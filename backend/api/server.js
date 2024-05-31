@@ -19,10 +19,7 @@ const app = express();
 // initialize middlewares
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 app.use(express.json({ extended: false }));
-app.use(cors({
-    origin: [" https://movie-lib-sigma.vercel.app/"],
-    methods: ['POST', 'GET'], credentials: true
-}));
+
 
 
 
