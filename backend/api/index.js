@@ -17,6 +17,11 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 
+app.use(cors({
+    origin: ["https://movielib-4ebh.onrender.com/"],
+    methods: ['POST', 'GET'],
+    credentials: true
+}));
 
 
 
