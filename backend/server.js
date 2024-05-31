@@ -32,6 +32,9 @@ connectDB();
 
 
 app.use(bodyParser.json())
+app.get('/', (req, res) => {
+    res.json("hello");
+})
 app.get('/api/user/name', async (req, res) => {
     const userObjectId = req.query.userObjectId;
     try {
