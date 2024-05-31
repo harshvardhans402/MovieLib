@@ -18,7 +18,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: ["https://movielib-4ebh.onrender.com"],
+    origin: ["https://movie-lib-front.vercel.app"],
     methods: ['POST', 'GET'],
     credentials: true
 }));
