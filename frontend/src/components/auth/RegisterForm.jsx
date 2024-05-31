@@ -23,7 +23,7 @@ export default function RegisterForm() {
     function handleSubmit(e) {
         e.preventDefault();
         axios
-            .post("http://localhost:3001/api/auth/register", data, { withCredentials: true })
+            .post("https://movielib-4ebh.onrender.com/api/auth/register", data, { withCredentials: true })
             .then((res) => {
                 console.log(res);
                 setData({ email: "", password: "", name: "" });
