@@ -1,16 +1,27 @@
 // ProtectedRoutes.js
-import { Outlet, Route, Routes } from "react-router-dom";
 import LoginForm from "./LoginForm";
-import ForumForm from "../ForumForm";
+import Home from "../Home";
+import { deserializeState } from '../../features/common.js'
 
-export default function ProtectedRoutes({ isAuthenticated }) {
+export default function ProtectedRoutes() {
+
+    const initialState = deserializeState();
+    console.log(initialState)
+    let isLoggedIn = false;
+    // console.log(initialState.userId)
+    console.log("dfjsdklf")
+    if (initialState) {
+        isLoggedIn = initialState.isLoggedIn;
+        console.log
+    }
+
     return (
         <div>
             {
-            (isAuthenticated ) ?
-            <ForumForm /> :
-            
-             <LoginForm />
+                (isLoggedIn) ?
+                    <Home /> :
+
+                    <LoginForm />
             }
 
 

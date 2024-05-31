@@ -1,78 +1,123 @@
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
-import { Container, Form, Button } from "react-bootstrap";
-import Layout from "../Layout";
-export default function RegisterForm() {
+import {
+    Card,
+    Input,
+    Checkbox,
+    Button,
+    Typography,
+} from "@material-tailwind/react";
+import './register.css'
 
+export default function RegisterForm() {
     let navigate = useNavigate();
 
     const [data, setData] = useState({
-        "username": "",
-        "password": ""
+        email: "",
+        password: "",
+        name: "",
+
     });
 
     function handleSubmit(e) {
         e.preventDefault();
         axios
-            .post("/api/auth/register", data, 
-            { withCredentials: true})
+            .post("http://localhost:3001/api/auth/register", data, { withCredentials: true })
             .then((res) => {
                 console.log(res);
-                setData({ username: "", password: "" });
+                setData({ email: "", password: "", name: "" });
             })
             .catch((err) => {
                 console.log("Error couldn't create forum");
                 console.log(err.message);
             });
-        
-        navigate("/login")
+
+        navigate("/login");
     }
 
     function handleChange(e) {
         setData({
-          ...data,
-          [e.target.name] : e.target.value
+            ...data,
+            [e.target.name]: e.target.value,
         });
     }
 
     function handleCancel(e) {
         setData({
-            "username": "",
-            "password": ""
-        })
+            email: "",
+            password: "",
+            name: "",
+
+        });
     }
 
     return (
-        <div>  <Layout/>
-        <Container>
-          
-            <h4 className="my-3">Sign up here</h4>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" >
-                <Form.Label htmlFor="username"> Username </Form.Label>
-                <Form.Control 
-                    type="text"
-                    name="username"
-                    placeholder='Enter your email...'
-                    onChange={handleChange}
-                    defaultValue={data.username}
-                />
-                </Form.Group>
-                <Form.Group className="mb-3" >
-                <Form.Label htmlFor="password"> Password </Form.Label>
-                <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder='Enter your password...'
-                    onChange={handleChange}
-                    defaultValue={data.password}
-                />
-                </Form.Group>
-                <Button type="submit" variant="primary" className="mx-2">Register</Button>
-                <Button onClick={handleCancel} variant="outline-secondary" className="mx-2">Cancel</Button>
-            </Form>
-        </Container>
+        <div className='p-10 flex place-content-center'>
+            <Card className="shadow-lg p-3">
+                <Typography variant="h4" color="blue-gray">
+                    Sign Up
+                </Typography>
+                <Typography color="gray" className="mt-1 font-normal">
+                    Nice to meet you! Enter your details to register.
+                </Typography>
+                <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 " onSubmit={handleSubmit}>
+                    <div className="mb-1 flex flex-col gap-6">
+                        <Typography variant="h6" color="blue-gray" className="-mb-3">
+                            Your Name
+                        </Typography>
+                        <Input
+                            size="lg"
+                            placeholder="name"
+                            name='name'
+                            defaultValue={data.name}
+                            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                            labelProps={{
+                                className: "before:content-none after:content-none",
+                            }}
+                        />
+                        <Typography variant="h6" color="blue-gray" className="-mb-3">
+                            Your Email
+                        </Typography>
+                        <Input
+                            size="lg"
+                            name='email'
+                            defaultValue={data.value}
+                            placeholder="name@mail.com"
+                            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                            labelProps={{
+                                className: "before:content-none after:content-none",
+                            }}
+                            onChange={handleChange}
+                        />
+                        <Typography variant="h6" color="blue-gray" className="-mb-3">
+                            Password
+                        </Typography>
+                        <Input
+                            type="password"
+                            size="lg"
+                            placeholder="********"
+                            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                            labelProps={{
+                                className: "before:content-none after:content-none",
+                            }}
+                            name="password"
+                            defaultValue={data.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <Button type="submit" className="mt-6" style={{ background: 'black' }} fullWidth>
+                        Sign up
+                    </Button>
+                    <Typography color="gray" className="mt-4 text-center font-normal">
+                        Already have an account?{" "}
+                        <Link to='/login' className="font-medium text-gray-900">
+                            Sign In
+                        </Link>
+                    </Typography>
+                </form>
+            </Card>
         </div>
-    )
+    );
 }
