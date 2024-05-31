@@ -15,7 +15,7 @@ const MyList = () => {
         e.preventDefault();
         try {
 
-            const response = await axios.post('/api/AddPlayList', {
+            const response = await axios.post('https://movielib-4ebh.onrender.com/api/AddPlayList', {
                 userId: userId,
                 name: playList,
                 isPublic: isPublic,
