@@ -115,7 +115,7 @@ const SearchComponent = () => {
     }
     const fetchPlaylists = async () => {
         try {
-            const response = await axios.get('/api/userPlaylists', {
+            const response = await axios.get('https://movielib-4ebh.onrender.com/api/userPlaylists', {
                 headers: {
                     Authorization: `${user.userId.token}`,
                 },
