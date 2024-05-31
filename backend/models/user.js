@@ -1,13 +1,20 @@
 const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema({
-    username: String,
+    name: String,
+    email: { type: String, unique: true },
+  
     password: String
 });
 
-userSchema.plugin(passportLocalMongoose);
+const playlistSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    name: { type: String, required: true },
+    isPublic: { type: Boolean, default: true },
+    movies: [{ type: Object }],
+});
+const PlayList = mongoose.model('Playlist', playlistSchema);
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = { User, PlayList };
