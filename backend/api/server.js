@@ -20,7 +20,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 app.use(express.json({ extended: false }));
 app.use(cors({
-    origin: ["https://movie-lib-etuy-k5972lp6o-harshvardhan-sharmas-projects-e47e30b9.vercel.app"],
+    origin:[" https://movie-lib-sigma.vercel.app/"],
     methods: ['POST', 'GET'], credentials: true
 }));
 
