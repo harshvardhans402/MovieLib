@@ -18,7 +18,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: ["https://movielib-4ebh.onrender.com/"],
+    origin: ["https://movielib-4ebh.onrender.com"],
     methods: ['POST', 'GET'],
     credentials: true
 }));
