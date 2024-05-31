@@ -11,14 +11,12 @@ const authRoutes = require("../routes/auth");
 const { User, PlayList } = require("../models/user");
 const bodyParser = require('body-parser');
 // initialize constants
-const PORT = process.env.PORT;
+
 
 // initialize express app
 const app = express();
 
-// initialize middlewares
-app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
-app.use(express.json({ extended: false }));
+
 
 
 
