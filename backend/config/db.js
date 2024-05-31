@@ -4,7 +4,7 @@ const db = process.env.MONGO_URI;
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(db, {
+        await mongoose.connect("mongodb+srv://hash22mca:Y5MMmWXY9KeSpkRR@harshvardhansdata.lxisxwm.mongodb.net/MovieLib?retryWrites=true&w=majority&appName=HarshvardhansData", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
