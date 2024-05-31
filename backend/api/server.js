@@ -6,9 +6,9 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/auth");
-const { User, PlayList } = require("./models/user");
+const connectDB = require("../config/db");
+const authRoutes = require("../routes/auth");
+const { User, PlayList } = require("../models/user");
 const bodyParser = require('body-parser');
 // initialize constants
 const PORT = process.env.PORT;
