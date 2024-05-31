@@ -12,7 +12,7 @@ const { User, PlayList } = require("../models/user");
 const bodyParser = require('body-parser');
 // initialize constants
 
-
+const port = process.env.PORT || 4000;
 // initialize express app
 const app = express();
 
@@ -191,7 +191,9 @@ app.get('/api/playlists/:playlistId', async (req, res) => {
 
 
 app.use("/api/auth", authRoutes);
-
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 // start and listen express web server
 
 module.exports = app;
