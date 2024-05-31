@@ -22,7 +22,7 @@ export default function AddToList(movie) {
     const handlePlay = async () => {
         console.log("helllloooo")
         try {
-            const response = await axios.get('/api/userPlaylists', {
+            const response = await axios.get('https://movielib-4ebh.onrender.com/api/userPlaylists', {
                 headers: {
                     Authorization: `${user.userId.token}`,
                 },
@@ -39,7 +39,7 @@ export default function AddToList(movie) {
 
 
         try {
-            const response = await axios.post('/api/AddMovie', {
+            const response = await axios.post('https://movielib-4ebh.onrender.com/api/AddMovie', {
                 userId: user.userId.token,
                 playlist_id: id,
                 isPublic: isPublic,
