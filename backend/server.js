@@ -19,7 +19,10 @@ const app = express();
 // initialize middlewares
 app.use(express.static(path.join(__dirname, "..", "frontend", "dist")));
 app.use(express.json({ extended: false }));
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({
+    origin: ["https://movie-lib-etuy-k5972lp6o-harshvardhan-sharmas-projects-e47e30b9.vercel.app"],
+    methods: ['POST', 'GET'], credentials: true
+}));
 
 
 
@@ -79,7 +82,7 @@ app.post('/api/AddPlayList', async (req, res) => {
             return res.status(400).send({ error: 'User ID and playlist name are required.' });
         }
 
-        try {   
+        try {
             const user = await User.findById(decoded.userId);
             const playlist = await PlayList.findOne({ userId: decoded.userId, name: { $regex: new RegExp(`^${name}$`, 'i') } });
             if (!user) {
@@ -113,7 +116,7 @@ app.post('/api/AddMovie', async (req, res) => {
 
     const { userId, playlist_id, isPublic, movie } = req.body;
 
-    try {       
+    try {
         const decoded = jwt.verify(userId, 'PRIVATE_KEY');
         console.log(decoded)
         try {
