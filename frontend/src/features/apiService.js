@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://www.omdbapi.com/';
+const API_BASE_URL = 'https://www.omdbapi.com/';
 const API_KEY = '17895477';
 
 const fetchData = async (title,page) => {
