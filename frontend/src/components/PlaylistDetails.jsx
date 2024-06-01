@@ -55,7 +55,7 @@ const PlaylistDetails = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('reduxState')
 
-        navigate('/');
+        navigate('/login');
 
     }
 
