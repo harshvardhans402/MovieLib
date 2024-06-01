@@ -33,7 +33,7 @@ export default function RegisterForm() {
                 console.log(err.message);
             });
 
-        navigate("/login");
+        navigate("/");
     }
 
     function handleChange(e) {
