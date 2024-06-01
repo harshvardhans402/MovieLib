@@ -15,7 +15,7 @@ const Navigation = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('reduxState')
 
-        navigate('/login');
+        navigate('/');
 
     }
 
