@@ -31,7 +31,7 @@ export default function LoginForm() {
                 dispatch(login({ userId: res.data, email: data.email, token: res.token, isLoggedIn: true }));
                 setData({ email: "", password: "" });
                 console.log("hello")
-                navigate("/");
+                navigate("/home");
             })
             .catch((err) => {
                 console.log(err)
