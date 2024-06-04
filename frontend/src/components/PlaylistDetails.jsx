@@ -16,7 +16,7 @@ import {
 const PlaylistDetails = () => {
     const [playlistId, setPlaylistId] = useState(useParams().playlistId);
     const [isLoading, setIsLoading] = useState(false);
-    const [playlistData, setPlaylistData] = useState(null);
+    const [playlistData, setPlaylistData] = useState([]);
     const user = useSelector((state) => state.user);
     const location = useLocation();
     const prevLocation = useRef(location);
@@ -157,17 +157,17 @@ const PlaylistDetails = () => {
         </Navbar>
             <div className="text-center">
                 <h1 className="text-4xl font-bold pt-40 pb-15 text-zinc-800">
-                    {playlistData ? "Playlist: " + playlistData.name : "No such Playlist"}
+                    {playlistData.length > 0 ? "Playlist: " + playlistData.name : "No such Playlist"}
                 </h1>
                 {isLoading && <h1 className="text-4xl font-bold m-5">Loading</h1>}
-                {playlistData && !isLoading && ( // Display error if data fetching fails
+                {playlistData.length > 0 && !isLoading && ( // Display error if data fetching fails
                     <div className="flex flex-wrap place-content-center">
                         {playlistData.movies.map((movie) => (
                             <MovieCard key={movie.imdbID} movie={movie} />
                         ))}
                     </div>
                 )}
-                {!playlistData && !isLoading && ( // Display error if data fetching fails
+                {playlistData.length==0 && !isLoading && ( // Display error if data fetching fails
                     <h1 className="text-4xl font-bold m-5">Error fetching playlist</h1>
                 )}
             </div>
