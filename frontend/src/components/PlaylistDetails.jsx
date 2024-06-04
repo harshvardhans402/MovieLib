@@ -3,6 +3,15 @@ import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
 import MovieCard from "./MovieCard";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import {
+    Navbar,
+    Collapse,
+    Typography,
+    Button,
+    IconButton,
+
+} from "@material-tailwind/react";
+
 
 const PlaylistDetails = () => {
     const [playlistId, setPlaylistId] = useState(useParams().playlistId);
@@ -12,13 +21,21 @@ const PlaylistDetails = () => {
     const location = useLocation();
     const prevLocation = useRef(location);
     const navigate = useNavigate();
+    const [openNav, setOpenNav] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener(
+            "resize",
+            () => window.innerWidth >= 960 && setOpenNav(false),
+        );
+    }, []);
 
 
     const fetchPlaylist = async () => {
         try {
             setIsLoading(true);
 
-            const response = await axios.get(`https://movielib-4ebh.onrender.com/api/playlists/${playlistId}`, {
+            const response = await axios.get(`/api/playlists/${playlistId}`, {
                 headers: {
                     Authorization: `${user.userId.token}`,
                 },
@@ -63,25 +80,81 @@ const PlaylistDetails = () => {
 
     // Conditional Rendering with Loading Indicator and Error Handling
     return (
-        <><div className="   " >
-            <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <>  <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+            <div className="flex items-center justify-between text-blue-gray-900">
+                <Link to='/home#'>
+                    <Typography
+                        as="a"
+                        variant="h3"
+                        color="blue"
 
+                        className="mr-4 cursor-pointer py-1.5 font-medium"
+                    >
+                        Movie Hub
+                    </Typography>
+                </Link>
+                <div className="flex items-center gap-4">
+                    <div className="mr-4 hidden lg:block"></div>
+                    <div className="flex items-center gap-x-1">
 
-                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleLogout}>Log out</button>
-
-
-                    <div className="items-center     " id="navbar-sticky">
-                        <ul className="flex flex-col p-0 md:p-0 mt-0 font-medium  rounded-lg  md:space-x-8 md:mt-0 dark:bg-gray-900  ">
-                            <li>
-                                <Link to="/home" className=" py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 " aria-current="page">Home</Link>
-                            </li>
-
-
-                        </ul>
+                        <Button
+                            variant="gradient"
+                            size="sm"
+                            className="hidden lg:inline-block"
+                            onClick={handleLogout}
+                        >
+                            <span>Log Out</span>
+                        </Button>
                     </div>
+                    <IconButton
+                        variant="text"
+                        className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+                        ripple={false}
+                        onClick={() => setOpenNav(!openNav)}
+                    >
+                        {openNav ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                className="h-6 w-6"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        ) : (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
+                            </svg>
+                        )}
+                    </IconButton>
                 </div>
-            </nav>
+            </div>
+            <Collapse open={openNav}>
+
+                <div className="flex items-center gap-x-1">
+
+                    <Button fullWidth variant="gradient" size="sm" className="" onClick={handleLogout}>
+                        <span>Log Out</span>
+                    </Button>
+                </div>
+            </Collapse>
+        </Navbar>
             <div className="text-center">
                 <h1 className="text-4xl font-bold pt-40 pb-15 text-zinc-800">
                     {playlistData ? "Playlist: " + playlistData.name : "No such Playlist"}
@@ -98,7 +171,7 @@ const PlaylistDetails = () => {
                     <h1 className="text-4xl font-bold m-5">Error fetching playlist</h1>
                 )}
             </div>
-        </div>
+
         </>
     );
 };

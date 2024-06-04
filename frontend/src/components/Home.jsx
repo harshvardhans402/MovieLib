@@ -124,7 +124,6 @@ const SearchComponent = () => {
         } catch (err) {
             console.log(err)
 
-            // setError(err.response ? err.response.data.message : 'Error fetching playlists');
         }
     }
 
