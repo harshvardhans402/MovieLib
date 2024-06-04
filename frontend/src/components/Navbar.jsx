@@ -7,10 +7,12 @@ import {
     IconButton,
     Card,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function StickyNavbar() {
     const [openNav, setOpenNav] = React.useState(false);
+    const navigate = useNavigate();
     function handleLogout() {
 
 
