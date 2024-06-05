@@ -10,6 +10,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { Table } from 'antd';
 import Navigation from './Navbar.jsx';
+import { motion } from 'framer-motion';
 
 
 
@@ -217,7 +218,14 @@ const SearchComponent = () => {
                 <div className='flex flex-wrap place-content-center'>
                     {
                         movieData.map((movie) => (
-                            <MovieCard key={movie.imdbID} movie={movie} />
+                            <motion.div
+
+                                whileInView={{ y: [10, 50, 1], opacity: [0, 0, 1] }}
+                                transition={{ duration: 0.5 }}
+                            >
+
+                                <MovieCard key={movie.imdbID} movie={movie} />
+                            </motion.div>
                         )
                         )
                     }

@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/Santhosh136/discussion-forum-app/issues"
   },
-  "homepage": "https://github.com/Santhosh136/discussion-forum-app#readme"
+  "homepage": "https://github.com/Santhosh136/discussion-forum-app#readme",
+  "dependencies": {}
 }
