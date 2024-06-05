@@ -215,6 +215,7 @@ const SearchComponent = () => {
                 </form>
 
 
+
                 <div className='flex flex-wrap place-content-center'>
                     <AnimatePresence>
                         {
@@ -223,6 +224,7 @@ const SearchComponent = () => {
 
                                     whileInView={{ y: [10, 50, 1], opacity: [0, 0, 1] }}
                                     transition={{ duration: 0.5 }}
+                                    exit={{ opacity: 0, y: 10 }}
                                 >
 
                                     <MovieCard key={movie.imdbID} movie={movie} />
